@@ -1,0 +1,29 @@
+﻿@model StudyBlog.ViewModels.CreatePostViewModel
+
+@{
+    ViewBag.Title = "Новая публикация";
+    Layout = "_Layout";
+}
+
+<h2>Заполните форму для создания публикации</h2>
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <form method="post" asp-controller="Posts" asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly"></div>
+            <div class="form-group">
+                <label asp-for="Description"></label><br/>
+                <input class="form-control" asp-for="Description"/>
+                <span asp-validation-for="Description"></span>
+            </div>
+            <div class="form-group">
+                <label  asp-for="File"></label><br />
+                <input class="form-control-file" asp-for="File"/>
+                <span asp-validation-for="File"></span>
+            </div>
+            <div>
+                <input class="form-control" type="submit" value="Опубликовать" />
+            </div>
+        </form>
+    </div>
+</div>

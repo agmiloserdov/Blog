@@ -1,0 +1,46 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<User> UserManager
+@model Post
+
+<div class="tweetEntry">
+  
+  <div class="tweetEntry-content">
+    
+    <a asp-action="Index" asp-controller="Account" asp-route-id="@Model.User.Id">
+
+      <img class="tweetEntry-avatar" src="~/@Model.User.AvatarPath" alt="user avatar">
+
+      <strong class="tweetEntry-fullname">
+        @Model.User.FirstName @Model.User.SecondName
+      </strong>
+      <br>
+      
+      <span class="tweetEntry-username">
+        <b>@Model.User.UserName</b>
+      </span>
+      
+      <span class="tweetEntry-timestamp">- @Model.CreatedAt.ToShortDateString()</span>
+      
+    </a>
+    <p>
+      @if (UserManager.GetUserId(User) == Model.UserId)
+      {
+        <a class="btn btn-outline-dark" asp-action="Edit" asp-controller="Posts" asp-route-id="@Model.Id">Редактировать</a>
+      }
+    </p>
+    <div class="tweetEntry-text-container">
+      @Model.Description
+    </div>
+    
+  </div>
+  
+  <div class="optionalMedia">
+    <a asp-action="Post" asp-controller="Posts" asp-route-id="@Model.Id">
+      <img class="optionalMedia-img" src="~/@Model.PhotoPath" alt="post image">
+    </a>
+  </div>
+  
+  <div class="tweetEntry-action-list" style="line-height:24px;color: #b1bbc3;">
+    <i class="fa fa-heart" style="width: 80px"></i>
+  </div>
+</div>

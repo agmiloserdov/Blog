@@ -1,0 +1,20 @@
+﻿@model List<Post>
+
+@{
+    ViewBag.Title = "Публикации пользователей";
+    Layout = "_Layout";
+}
+
+<h2>Все записи</h2>
+<a asp-action="Create" class="btn btn-outline-info">Новая публикация</a>
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        @foreach (var post in Model)
+        {
+            {
+                await Html.RenderPartialAsync("PartialViews/PostPartialView", post);
+            }
+        }
+    </div>
+</div>

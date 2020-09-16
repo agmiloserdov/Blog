@@ -1,0 +1,10 @@
+﻿@model Post
+
+@{
+    ViewBag.Title = "Публикация";
+    Layout = "_Layout";
+}
+
+@{
+    await Html.RenderPartialAsync("PartialViews/PostPartialView", Model);
+}

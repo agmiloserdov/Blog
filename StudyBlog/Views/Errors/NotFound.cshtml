@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "404 Страница не найдена";
+    Layout = "_Layout";
+}
+<div class="box">
+  <div class="box__ghost">
+    <div class="symbol"></div>
+    <div class="symbol"></div>
+    <div class="symbol"></div>
+    <div class="symbol"></div>
+    <div class="symbol"></div>
+    <div class="symbol"></div>
+    
+    <div class="box__ghost-container">
+      <div class="box__ghost-eyes">
+        <div class="box__eye-left"></div>
+        <div class="box__eye-right"></div>
+      </div>
+      <div class="box__ghost-bottom">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <div class="box__ghost-shadow"></div>
+  </div>
+  
+  <div class="box__description">
+    <div class="box__description-container">
+      <div class="box__description-title">Упс!</div>
+      <div class="box__description-text">Видимо то, что вы искали не существует</div>
+    </div>
+    
+    <a asp-action="Index"  asp-controller="Posts" target="_blank" class="box__button">На главную</a>
+    
+  </div>
+  
+</div>
+@section Scripts
+{
+    <script >
+    var pageX = $(document).width();
+    var pageY = $(document).height();
+    var mouseY=0;
+    var mouseX=0;
+    
+    $(document).mousemove(function( event ) {
+      //verticalAxis
+      mouseY = event.pageY;
+      yAxis = (pageY/2-mouseY)/pageY*300; 
+      //horizontalAxis
+      mouseX = event.pageX / -pageX;
+      xAxis = -mouseX * 100 - 100;
+    
+      $('.box__ghost-eyes').css({ 'transform': 'translate('+ xAxis +'%,-'+ yAxis +'%)' }); 
+    
+      //console.log('X: ' + xAxis);
+    
+    });
+    </script>
+}
+

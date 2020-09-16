@@ -1,0 +1,68 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model User
+@inject UserManager<User> UserManager
+@{
+    ViewBag.Title = "Профиль пользователя";
+    Layout = "_Layout";
+}
+
+
+<div class="twPc-div">
+	<a class="twPc-bg twPc-block"></a>
+
+	<div style="padding: 10px;">
+		<a asp-action="Index" asp-controller="Account" asp-route-id="@Model.Id">
+			<img alt="@Model.FirstName" src="~/@Model.AvatarPath" class="twPc-avatarImg">
+		</a>
+		@if (UserManager.GetUserId(User) == Model.Id)
+		{
+			<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-info">Изменить</a>
+			<a asp-action="ChangePassword" asp-route-id="@Model.Id" class="btn btn-outline-danger">Изменить пароль</a>
+		}
+
+		<div class="twPc-divUser">
+			<div class="twPc-divName">
+				<a asp-action="Index" asp-controller="Account" asp-route-id="@Model.Id">
+					@Model.FirstName @Model.SecondName
+				</a>
+			</div>
+		</div>
+
+		<div class="twPc-divStats">
+			<ul class="twPc-Arrange">
+				<li class="twPc-ArrangeSizeFit">
+					<a asp-action="Index" asp-controller="Account" asp-route-id="@Model.Id" title="@Model.Posts.Count Публикаций">
+						<span class="twPc-StatLabel twPc-block">Публикаций</span>
+						<span class="twPc-StatValue">@Model.Posts.Count</span>
+					</a>
+				</li>
+				<li class="twPc-ArrangeSizeFit">
+					<a href="#" title="885 Following">
+						<span class="twPc-StatLabel twPc-block">Подписок</span>
+						<span class="twPc-StatValue">885</span>
+					</a>
+				</li>
+				<li class="twPc-ArrangeSizeFit">
+					<a href="#" title="1.810 Followers">
+						<span class="twPc-StatLabel twPc-block">Подписчиков</span>
+						<span class="twPc-StatValue">1.810</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="row justify-content-center userPosts">
+	<div class="col-md-6">
+		@foreach (var post in Model.Posts)
+        {
+            {
+                await Html.RenderPartialAsync("PartialViews/PostPartialView", post);
+            }
+        }
+	</div>
+</div>
+
+
+
+
