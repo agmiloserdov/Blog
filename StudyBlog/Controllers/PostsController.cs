@@ -99,7 +99,7 @@ namespace StudyBlog.Controllers
             if (post.UserId != _userManager.GetUserId(User)) return Forbid();
             if (model.File != null)
             {
-                string path = Path.Combine(_environment.ContentRootPath,"wwwroot//images/userPosts/");
+                string path = Path.Combine(_environment.ContentRootPath,"wwwroot/images/userPosts/");
                 string photoPath = $"images/userPosts/{model.File.FileName}";
                 _uploadFileService.Upload(path, model.File.FileName, model.File);
                 post.PhotoPath = photoPath;
