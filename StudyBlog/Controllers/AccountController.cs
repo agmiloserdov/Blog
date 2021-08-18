@@ -137,7 +137,7 @@ namespace StudyBlog.Controllers
         {
             if (ModelState.IsValid)
             {
-                string path = Path.Combine(_environment.ContentRootPath,"wwwroot\\images\\");
+                string path = Path.Combine(_environment.ContentRootPath,"wwwroot/images/");
                 string photoPath = $"images/{model.File.FileName}";
                 _uploadFileService.Upload(path, model.File.FileName, model.File);
 
